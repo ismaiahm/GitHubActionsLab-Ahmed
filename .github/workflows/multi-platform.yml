@@ -29,7 +29,7 @@ jobs:
       - name: Step 2 - Print Windows system info
         run: systeminfo
       - name: Step 3 - Run a Windows specific command
-        run: timeout 20
+        run: dir
       - name: Step 4 - Create and write text to a file
         run: echo "Hello, World!" > windows-file.txt
       - name: Step 5 - Display the contents of the file

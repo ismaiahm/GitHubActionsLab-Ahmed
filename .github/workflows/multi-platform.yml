@@ -1,7 +1,7 @@
 name: Multiple Platform Workflow
 
 on:
-  pull:
+  pull_request:
     branches:
       - main
 

@@ -1,0 +1,50 @@
+name: Multiple Platform Workflow
+
+on:
+  pull:
+    branches:
+      - main
+
+jobs:
+  ubuntu-job:
+    name: Run a job on Ubuntu Linux
+    runs-on: ubuntu-latest
+    steps:
+      - name: Step 1 - Checkout the code
+        uses: actions/checkout@v4
+      - name: Step 2 - Print Ubuntu system info
+        runs: uname -a
+      - name: Step 3 - Run a Linux specific command
+        runs: sleep 20
+      - name: Step 4 - Create and write to a file
+        runs: echo "This is text from a file" > step-4-file
+      - name: Step 5 - Display the content from the new file
+        runs: cat step-4-file
+  windows-job:
+    name: Run a job on Windows
+    runs-on: windows-latest
+    steps:
+      - name: Step 1 - Checkout the code
+        uses: actions/checkout@v4
+      - name: Step 2 - Print Windows system info
+        runs: systeminfo
+      - name: Step 3 - Run a Windows specific command
+        runs: timeout 20
+      - name: Step 4 - Create and write text to a file
+        runs: echo "Hello, World!" > windows-file.txt
+      - name: Step 5 - Display the contents of the file
+        runs: type windows-file.txt
+  macos-job:
+    name: Run a job on Mac OS
+    runs-on: macos-latest
+    steps:
+      - name: Step 1 - Checkout the code
+        uses: actions/checkout@v4
+      - name: Step 2 - Print Mac OS system info
+        runs: uname -a
+      - name: Step 3 - Run a Mac OS specific command
+        runs: sleep 20
+      - name: Step 4 - Create and write to a file
+        runs: echo "This is text from a file" > mac-os-file
+      - name: Step 5 - Display the content from the new file
+        runs: cat mac-os-file

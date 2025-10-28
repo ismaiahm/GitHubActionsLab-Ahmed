@@ -1,0 +1,41 @@
+name: Dependant Jobs Workflow
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  job1:
+    name: Build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Step 1 - Display building message
+        run: echo "Building application..."
+      - name: Step 2 - Put the job to sleep
+        run: sleep 3
+      - name: Step 3 - Display finished message
+        run: echo "Done building..."
+  job2:
+    name: Test
+    needs: job1
+    runs-on: ubuntu-latest
+    steps:
+      - name: Step 1 - Display starting message
+        run: echo "Running tests..."
+      - name: Step 2 - Put the job to sleep
+        run: sleep 5
+      - name: Step 3 - Display finished message
+        run: echo "Done testing..."
+  job3:
+    name: Deploy
+    needs: job2
+    runs-on: ubuntu-latest
+    steps:
+      - name: Step 1 - Display deploy status message
+        run: echo "Deploying application..."
+      - name: Step 2 - Sleep for 7 seconds
+        run: sleep 7
+      - name: Step 3 - Display finished status
+        run: echo "Done deploying..."  
+  
